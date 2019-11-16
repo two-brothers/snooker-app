@@ -26,7 +26,7 @@ class GameBloc implements Bloc {
   }
 
   void foul({@required int value}) {
-    _game = _game.addPoints(points: min(value, 4), playerId: _game.opponentId);
+    _game = _game.addPoints(points: max(value, 4), playerId: _game.opponentId);
     _gameController.add(_game);
   }
 
