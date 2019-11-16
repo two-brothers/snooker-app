@@ -7,6 +7,8 @@ class Setup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GameBloc bloc = BlocProvider.of<GameBloc>(context);
+    String player1 = '';
+    String player2 = '';
 
     return Scaffold(
       appBar: AppBar(
@@ -22,16 +24,22 @@ class Setup extends StatelessWidget {
                 border: OutlineInputBorder(),
                 labelText: 'Player 1',
               ),
+              onChanged: (text) {
+                player1 = text;
+              },
             ),
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Player 2',
               ),
+              onChanged: (text) {
+                player2 = text;
+              },
             ),
             RaisedButton(
               onPressed: () {
-                bloc.initPlayers('Nikesh', 'Mikey');
+                bloc.initPlayers(player1, player2);
               },
               child: Text("Start game"),
             )

@@ -6,7 +6,7 @@ class GameBloc implements Bloc {
   final _gameController = StreamController<Game>();
   Game _game;
 
-  Stream<Game> get gameStream => _gameController.stream;
+  Stream<Game> get stream => _gameController.stream;
 
   void initPlayers(String player1, String player2) {
     _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0));
