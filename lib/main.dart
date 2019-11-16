@@ -14,8 +14,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Snooker',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            primarySwatch: Colors.blue,
+            fontFamily: 'OpenSans',
+            textTheme: TextTheme(
+              title: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 24, letterSpacing: 0, height: 1.5, color: Colors.black),
+              button: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),
+            )),
         home: Setup(),
       ),
     );
