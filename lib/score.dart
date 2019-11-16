@@ -35,23 +35,29 @@ class Score extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     snapshot.data.player1.name.toUpperCase(),
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 16, color: snapshot.data.playerId == 0 ? Colors.red: Colors.black),
                                   ),
                                   Text(
                                     snapshot.data.player1.score.toString(),
-                                    style: TextStyle(fontSize: 40),
+                                    style: TextStyle(fontSize: 40, color: snapshot.data.playerId == 0 ? Colors.red: Colors.black),
                                   )
                                 ],
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  bloc.nextTurn();
+                                },
+                                child: Icon(Icons.swap_horiz),
                               ),
                               Column(
                                 children: <Widget>[
                                   Text(
                                     snapshot.data.player2.name.toUpperCase(),
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 16, color: snapshot.data.playerId == 1 ? Colors.red: Colors.black),
                                   ),
                                   Text(
                                     snapshot.data.player2.score.toString(),
-                                    style: TextStyle(fontSize: 40),
+                                    style: TextStyle(fontSize: 40, color: snapshot.data.playerId == 1 ? Colors.red: Colors.black),
                                   )
                                 ],
                               ),
