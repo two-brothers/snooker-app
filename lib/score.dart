@@ -69,7 +69,7 @@ class Score extends StatelessWidget {
                           children: <Widget>[
                             RaisedButton(
                               onPressed: () {
-                                /*...*/
+                                bloc.foul(value: 0);
                               },
                               color: Colors.white,
                               child: Text("Foul on white"),
