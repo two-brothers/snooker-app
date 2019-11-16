@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'bloc/bloc_provider.dart';
 import 'bloc/game_bloc.dart';
 import 'score_updater.dart';
+import 'user_score.dart';
 
 class Score extends StatelessWidget {
   @override
@@ -31,36 +32,14 @@ class Score extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    snapshot.data.player1.name.toUpperCase(),
-                                    style: TextStyle(fontSize: 16, color: snapshot.data.playerId == 0 ? Colors.red: Colors.black),
-                                  ),
-                                  Text(
-                                    snapshot.data.player1.score.toString(),
-                                    style: TextStyle(fontSize: 40, color: snapshot.data.playerId == 0 ? Colors.red: Colors.black),
-                                  )
-                                ],
-                              ),
+                              UserScore(player: snapshot.data.player1, isActive: snapshot.data.playerId == 0),
                               FlatButton(
                                 onPressed: () {
                                   bloc.nextTurn();
                                 },
                                 child: Icon(Icons.swap_horiz),
                               ),
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    snapshot.data.player2.name.toUpperCase(),
-                                    style: TextStyle(fontSize: 16, color: snapshot.data.playerId == 1 ? Colors.red: Colors.black),
-                                  ),
-                                  Text(
-                                    snapshot.data.player2.score.toString(),
-                                    style: TextStyle(fontSize: 40, color: snapshot.data.playerId == 1 ? Colors.red: Colors.black),
-                                  )
-                                ],
-                              ),
+                              UserScore(player: snapshot.data.player2, isActive: snapshot.data.playerId == 1),
                             ],
                           ),
                         ),
