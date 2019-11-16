@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -11,20 +12,23 @@ class GameBloc implements Bloc {
   Stream<Game> get stream => _gameController.stream;
 
   void initPlayers(String player1, String player2) {
-    _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0), turn: 0);
+    _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0), playerId: 0);
     _gameController.add(_game);
   }
 
-  void addPoints({@required int playerId, @required int increment}) {
-    if (playerId == 0) {
-      Player _player = _game.player1;
-      _game = Game(player1: Player(name: _player.name, score: _player.score + increment), player2: _game.player2, turn: _game.turn);
-      _gameController.add(_game);
-    } else if (playerId == 1) {
-      Player _player = _game.player2;
-      _game = Game(player1: _game.player1, player2: Player(name: _player.name, score: _player.score + increment), turn: _game.turn);
-      _gameController.add(_game);
-    }
+  void pocketBall({@required int value}) {
+    _game = _game.addPoints(points: value, playerId: _game.playerId);
+    _gameController.add(_game);
+  }
+
+  void foul({@required int value}) {
+    _game = _game.addPoints(points: min(value, 4), playerId: _game.opponentId);
+    _gameController.add(_game);
+  }
+
+  void nextTurn() {
+    _game = _game.nextTurn();
+    _gameController.add(_game);
   }
 
   @override
@@ -36,9 +40,27 @@ class GameBloc implements Bloc {
 class Game {
   final Player player1;
   final Player player2;
-  final int turn;
+  final int playerId;
 
-  Game({@required this.player1, @required this.player2, @required this.turn});
+  int get opponentId => (this.playerId + 1) % 2;
+
+  Game({@required this.player1, @required this.player2, @required this.playerId});
+
+  Game nextTurn() {
+    return Game(player1: this.player1, player2: this.player2, playerId: this.opponentId);
+  }
+
+  Game addPoints({@required int points, @required int playerId}) {
+    if (playerId == 0) {
+      Player _player = this.player1;
+      return Game(
+          player1: Player(name: _player.name, score: _player.score + points), player2: this.player2, playerId: this.playerId);
+    } else {
+      Player _player = this.player2;
+      return Game(
+          player1: this.player1, player2: Player(name: _player.name, score: _player.score + points), playerId: this.playerId);
+    }
+  }
 }
 
 class Player {
