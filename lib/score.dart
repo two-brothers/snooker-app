@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bloc/bloc_provider.dart';
 import 'bloc/game_bloc.dart';
+import 'score_updater.dart';
 
 class Score extends StatelessWidget {
   @override
@@ -69,160 +70,13 @@ class Score extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.red),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+1"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.yellow),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+2"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.green),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+3"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.brown),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+4"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.blue),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+5"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.pinkAccent),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+6"),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("Foul"),
-                            ),
-                            RaisedButton(
-                                onPressed: () {
-                                  /*...*/
-                                },
-                                color: Colors.black),
-                            RaisedButton(
-                              onPressed: () {
-                                /*...*/
-                              },
-                              child: Text("+7"),
-                            ),
-                          ],
-                        ),
+                        ScoreUpdater(color: Colors.red, value: 1),
+                        ScoreUpdater(color: Colors.yellow, value: 2),
+                        ScoreUpdater(color: Colors.green, value: 3),
+                        ScoreUpdater(color: Colors.brown, value: 4),
+                        ScoreUpdater(color: Colors.blue, value: 5),
+                        ScoreUpdater(color: Colors.pinkAccent, value: 6),
+                        ScoreUpdater(color: Colors.black, value: 7)
                       ],
                     ),
                   ],
