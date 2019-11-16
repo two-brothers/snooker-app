@@ -18,11 +18,11 @@ class Score extends StatelessWidget {
               appBar: AppBar(
                 title: Text("Setup"),
               ),
-              body: SingleChildScrollView(
-                  child: Stack(
-                children: <Widget>[
-                  Center(
-                    child: Column(
+              body: Center(
+                child: SingleChildScrollView(
+                    child: Stack(
+                  children: <Widget>[
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
@@ -225,9 +225,9 @@ class Score extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ],
-              )));
+                  ],
+                )),
+              ));
         });
   }
 }
