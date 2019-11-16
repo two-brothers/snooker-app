@@ -11,12 +11,17 @@ class Score extends StatelessWidget {
     return StreamBuilder<Game>(
         stream: bloc.stream,
         builder: (context, snapshot) {
-          return snapshot.hasData
-              ? Scaffold(
-                  appBar: AppBar(
-                    title: Text("Setup"),
-                  ),
-                  body: Center(
+          if (!snapshot.hasData) {
+            return SizedBox.shrink(); // an empty widget
+          }
+          return Scaffold(
+              appBar: AppBar(
+                title: Text("Setup"),
+              ),
+              body: SingleChildScrollView(
+                  child: Stack(
+                children: <Widget>[
+                  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -221,8 +226,8 @@ class Score extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
-              : SizedBox.shrink(); // an empty widget
+                ],
+              )));
         });
   }
 }

@@ -12,45 +12,44 @@ class Setup extends StatelessWidget {
     String player2 = '';
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Setup"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Who's playing?"),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Player 1',
-              ),
-              onChanged: (text) {
-                player1 = text;
-              },
-            ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Player 2',
-              ),
-              onChanged: (text) {
-                player2 = text;
-              },
-            ),
-            RaisedButton(
-              onPressed: () {
-                bloc.initPlayers(player1, player2);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Score()),
-                );
-              },
-              child: Text("Start game"),
-            )
-          ],
+        appBar: AppBar(
+          title: Text("Setup"),
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Who's playing?"),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Player 1',
+                ),
+                onChanged: (text) {
+                  player1 = text;
+                },
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Player 2',
+                ),
+                onChanged: (text) {
+                  player2 = text;
+                },
+              ),
+              RaisedButton(
+                onPressed: () {
+                  bloc.initPlayers(player1, player2);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Score()),
+                  );
+                },
+                child: Text("Start game"),
+              )
+            ],
+          ),
+        ));
   }
 }
