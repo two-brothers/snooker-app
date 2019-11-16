@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bloc/bloc_provider.dart';
 import 'bloc/game_bloc.dart';
+import 'score.dart';
 
 class Setup extends StatelessWidget {
   @override
@@ -40,6 +41,10 @@ class Setup extends StatelessWidget {
             RaisedButton(
               onPressed: () {
                 bloc.initPlayers(player1, player2);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Score()),
+                );
               },
               child: Text("Start game"),
             )
