@@ -11,6 +11,10 @@ class GameBloc implements Bloc {
 
   Stream<Game> get stream => _gameController.stream;
 
+  GameBloc() {
+    initPlayers('Player1', 'Player2');
+  }
+
   void initPlayers(String player1, String player2) {
     _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0), playerId: 0);
     _gameController.add(_game);
