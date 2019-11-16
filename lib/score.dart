@@ -11,10 +11,31 @@ class Score extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(bottom: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text("PLAYER 1", style: TextStyle(fontSize: 16),),
+                      Text("0", style: TextStyle(fontSize: 40),)
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text("PLAYER 2", style: TextStyle(fontSize: 16),),
+                      Text("0", style: TextStyle(fontSize: 40),)
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
+
                   onPressed: () {
                     /*...*/
                   },
