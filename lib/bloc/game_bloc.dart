@@ -11,18 +11,18 @@ class GameBloc implements Bloc {
   Stream<Game> get stream => _gameController.stream;
 
   void initPlayers(String player1, String player2) {
-    _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0));
+    _game = Game(player1: Player(name: player1, score: 0), player2: Player(name: player2, score: 0), turn: 0);
     _gameController.add(_game);
   }
 
   void addPoints({@required int playerId, @required int increment}) {
     if (playerId == 0) {
       Player _player = _game.player1;
-      _game = Game(player1: Player(name: _player.name, score: _player.score + increment), player2: _game.player2);
+      _game = Game(player1: Player(name: _player.name, score: _player.score + increment), player2: _game.player2, turn: _game.turn);
       _gameController.add(_game);
     } else if (playerId == 1) {
       Player _player = _game.player2;
-      _game = Game(player1: _game.player1, player2: Player(name: _player.name, score: _player.score + increment));
+      _game = Game(player1: _game.player1, player2: Player(name: _player.name, score: _player.score + increment), turn: _game.turn);
       _gameController.add(_game);
     }
   }
@@ -36,8 +36,9 @@ class GameBloc implements Bloc {
 class Game {
   final Player player1;
   final Player player2;
+  final int turn;
 
-  Game({@required this.player1, @required this.player2});
+  Game({@required this.player1, @required this.player2, @required this.turn});
 }
 
 class Player {
