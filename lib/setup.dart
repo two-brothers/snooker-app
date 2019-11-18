@@ -15,59 +15,73 @@ class Setup extends StatelessWidget {
       appBar: AppBar(
         title: Text("Setup"),
       ),
-      body: SingleChildScrollView(
-          child: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Text("Who's playing?", style: Theme.of(context).textTheme.title),
-              margin: EdgeInsets.only(bottom: 16),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Player 1',
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Container(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Text("Who's playing?", style: Theme.of(context).textTheme.title),
+                      margin: EdgeInsets.only(bottom: 16),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 16),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Player 1',
+                        ),
+                        onChanged: (text) {
+                          player1 = text;
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 16),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Player 2',
+                        ),
+                        onChanged: (text) {
+                          player2 = text;
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                onChanged: (text) {
-                  player1 = text;
-                },
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Player 2',
-                ),
-                onChanged: (text) {
-                  player2 = text;
-                },
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: () {
-                      bloc.initPlayers(player1, player2);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Score()),
-                      );
-                    },
-                    child: Text("START GAME"),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
-      )),
+              )
+            ]),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(
+                padding: EdgeInsets.all(16),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(children: <Widget>[
+                    Expanded(
+                      child: RaisedButton(
+                        color: Colors.blue,
+                        onPressed: () {
+                          bloc.initPlayers(player1, player2);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Score()),
+                          );
+                        },
+                        child: Text("START GAME"),
+                      ),
+                    ),
+                  ]),
+                )),
+          ),
+        ],
+      ),
     );
   }
 }
