@@ -30,7 +30,7 @@ class Score extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(bottom: 40),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               UserScore(player: snapshot.data.player1, isActive: snapshot.data.playerId == 0),
                               FlatButton(
